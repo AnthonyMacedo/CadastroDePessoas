@@ -83,6 +83,10 @@ https://github.com/AnthonyMacedo/CadastroDePessoas/blob/main/inserts-cidade-esta
 - Terceiro passo criar schema sch_desafio.
 - Quarto passo criar tabelas e fazer inserts de cidades e estados.
 
+## Observações
+- Houve uma falha no docker compose e ainda não foi corrigido.
+- Serão melhorados os scripts do banco de dados para ser feito via psql.
+
 # Autor
 
 Anthony Jefferson Sousa Macedo
