@@ -1,0 +1,76 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:o="http://omnifaces.org/ui"
+	xmlns:cc="http://java.sun.com/jsf/composite/customComponent">
+
+
+		<h:form id="frmDialogEndereco" >
+			<p:dialog header="Endereço" widgetVar="dlg-endereco" draggable="false" 
+				showEffect="fade" hideEffect="fade" responsive="true" modal="true" closeOnEscape="true"
+				resizable="false" style="max-width: 500px;" >
+				
+				<p:messages id="dlg-msg" closable="true">
+				</p:messages>
+
+			<p:outputPanel id="pnlFormEndereco" >
+				<div class="col-12 md:col-12">
+					<p:outputLabel for="iptCep" value="CEP" />
+					<p:inputMask id="iptCep" value="#{pessoaBean.enderecoInput.cep}"
+						styleClass="form-control" mask="99999-999" size="10" required="true" />
+				</div>
+
+				<div class="col-12 md:col-12">
+					<p:outputLabel for="iptLogradouro" value="Logradouro" />
+					<p:inputText id="iptLogradouro" value="#{pessoaBean.enderecoInput.logradouro}"
+						styleClass="form-control" size="120" required="true"/>
+				</div>
+
+				<div class="col-12 md:col-12">
+					<p:outputLabel for="iptBairro" value="Bairro" />
+					<p:inputText id="iptBairro" value="#{pessoaBean.enderecoInput.bairro}"
+						styleClass="form-control" size="60" required="true" />
+				</div>
+				
+				<div class="col-12 md:col-12">
+					<p:outputLabel for="iptNumero" value="Número" />
+					<p:inputText id="iptNumero" value="#{pessoaBean.enderecoInput.numero}"
+						styleClass="form-control" size="7" required="true"/>
+				</div>
+				<div class="col-12 md:col-12">
+					<p:outputLabel for="iptComplemento" value="Complemento" />
+					<p:inputText id="iptComplemento" value="#{pessoaBean.enderecoInput.complemento}"
+						styleClass="form-control" size="120" />
+				</div>
+				
+				<div class="col-12 md:col-4">
+					<p:outputLabel for="iptCidade" value="Cidade" />
+					<br/> 
+					<p:selectOneMenu id="iptCidade" value="#{pessoaBean.enderecoInput.cidade}"  converter="cidadeConverter"  >
+						<f:selectItems value="#{pessoaBean.cidades}" var="item" itemLabel="#{item.nome}"  itemValue="#{item}"/>
+					</p:selectOneMenu>
+				</div>
+				
+				<div class="col-12 md:col-3">
+					<p:outputLabel for="iptUf" value="UF" />
+					<br/>
+					<p:selectOneMenu id="iptUf" value="#{pessoaBean.enderecoInput.cidade.estado}"  converter="estadoConverter" >
+						<f:selectItems value="#{pessoaBean.estados}" var="item" itemLabel="#{item.uf}"  itemValue="#{item}"/>
+					</p:selectOneMenu>
+				</div>
+
+				</p:outputPanel>
+				<f:facet name="footer">
+					<p:commandButton id="btnAddEndereco" value="Adicionar" actionListener="#{pessoaBean.adicionarEndereco(pessoaBean.enderecoInput)}" 
+						process="@this dlg-msg pnlFormEndereco" update="dlg-msg panelEnderecos:frmEnderecos"  style="margin: 10px">
+						
+					</p:commandButton>	
+				</f:facet>
+			</p:dialog>
+		</h:form>
+
+</ui:composition>

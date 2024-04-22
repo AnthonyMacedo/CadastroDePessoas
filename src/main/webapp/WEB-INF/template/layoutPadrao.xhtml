@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Dashboard</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	
+	<h:outputStylesheet library="api" name="/css/estilo.css"/>
+	
+	<h:outputStylesheet library="api" name="/css/sistema.css"/>
+	
+	<h:outputStylesheet library="bootstrap" name="/css/bootstrap.css"/>
+	
+	<h:outputStylesheet library="adminLte" name="/css/adminlte.css"/>
+	
+	<h:outputStylesheet library="webjars" name="primeflex/3.3.1/primeflex.min.css" />
+</h:head>
+
+	<h:body>
+
+	<p:ajaxStatus styleClass="ajax-status">
+		<f:facet name="start">
+				<i class="pi pi-spin pi-spinner loading-icon" aria-hidden="true"></i>
+		</f:facet>
+		<f:facet name="complete">
+			<h:outputText value="" />
+		</f:facet>
+	</p:ajaxStatus>
+
+		<header>
+			<div style="float: left">
+				<h:link outcome="/home.xhtml">
+					<p:graphicImage alt="Logo" styleClass="logo-img"  library="api" name="/images/logo.png"/>
+				</h:link>
+			</div>
+			
+			<div style="float: right; margin-right: 110px">
+			
+				<h:form style="display: inline-block">
+					<p:menubar styleClass="menu-sistema">
+						<p:submenu label="Cadastros">
+							<p:menuitem value="Pessoas" outcome="/page/CadastroPessoa" />
+						</p:submenu>
+						
+						<p:submenu label="Listagem">
+							<p:menuitem value="Pesquisar Pessoas " outcome="/page/PesquisaPessoa" />
+							<p:menuitem value="Pesquisar Enderecos " outcome="/page/PesquisaEndereco" />
+						</p:submenu>
+						
+					</p:menubar>
+				</h:form>	
+			</div>
+			<div style="clear: both"></div>
+			
+		</header>
+		
+		<div id="conteudo">
+			<ui:insert name="corpo"/>
+		</div>	
+		
+		<p:separator style="margin-bottom: 0"/>
+		
+		<footer>
+			Desafio: Cadastro de Pessoas - 2024	
+		</footer>
+
+	</h:body>
+</html>

@@ -1,0 +1,96 @@
+/* Cores */
+.primary-gray {
+	background-color: #9999a1 !important;
+}
+.secondary-gray {
+	background-color: #e6e6e9 !important;
+}
+
+/* LOGIN */
+.sc-inputLogin.ui-panelgrid .ui-panelgrid-cell {
+	background: none !important;
+	padding: 0.5rem !important;
+}
+
+/* */
+.rotulo {
+	width: 150px;
+}
+
+.ui-panelgrid td {
+	height: 45px !important;
+}
+
+.ajax-status {
+	position: fixed;
+	top: 60px;
+	right: 10px;
+	width: 40px;
+	height: 40px;
+}
+
+.st-toolbar {
+	padding: 10px !important;
+}
+
+.st-produto-table input {
+	width: 100%;
+}
+
+/* TabView */
+.ui-tabs .ui-tabs-panel {
+	padding: 0.5em 0.2em !important;
+}
+
+.ui-tabs {
+	padding: 0 !important;
+}
+
+.ui-tabs .ui-tabs-nav {
+	margin: -1px !important;
+}
+
+.ui-tabs .ui-tabs-top>.ui-tabs-nav {
+	padding: 0 !important;
+} 
+/* fim TabView*/
+
+/* STATE DISABLED */
+.ui-state-disabled {
+	opacity: .65 !important;
+}
+
+/* Menu Sistema */
+.menu-sistema {
+    border: 0px !important;
+    padding: 0px !important;
+    background: none !important;
+}
+
+.menu-sistema .ui-menu-parent > a .ui-menuitem-text, .menu-sistema > .ui-menu-list > .ui-menuitem > a > .ui-menuitem-text {
+    color: #ffffff !important;
+}
+
+/* Menu sistema fim */
+
+
+/* AdminLte Edições */
+.form-control:focus {
+	border-color: #66666e !important;
+}
+
+/* Primefaces Edições */
+.ui-state-highlight, .ui-widget-content .ui-state-highlight {
+	color: #ffffff;
+    text-decoration: none;
+    background-color: #808080 !important;
+    background-color: #c0c0c0 !important;
+    background-position: 0px !important;
+    background-image: -moz-linear-gradient(top, #b1b1b1, #66666e) !important;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#b1b1b1), to(#66666e)) !important;
+    background-image: -webkit-linear-gradient(top, #b1b1b1, #66666e) !important;
+    background-image: -o-linear-gradient(top, #b1b1b1, #66666e) !important;
+    background-image: linear-gradient(to bottom, #b1b1b1, #66666e) !important;
+    background-repeat: repeat-x !important;
+}
+

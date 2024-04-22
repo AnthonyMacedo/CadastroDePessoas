@@ -1,0 +1,24 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:body>
+	<composite:interface>
+		<composite:attribute name="titulo" type="java.lang.String" required="false" />
+	</composite:interface>
+		<composite:implementation>
+			<div class="card card-secondary card-outline" >
+		
+				<div class="card-body">
+					<h5>#{cc.attrs.titulo}</h5>
+					<p:separator/>
+				
+					<composite:insertChildren/>
+				</div>
+			</div>
+		</composite:implementation>
+</h:body>
+
+</html>

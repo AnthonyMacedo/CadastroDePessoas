@@ -1,0 +1,149 @@
+<ui:composition template="/WEB-INF/template/layoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:o="http://omnifaces.org/ui"
+	xmlns:cc="http://java.sun.com/jsf/composite/customComponent">
+
+	<f:metadata>
+		<o:viewParam name="pessoaId" value="#{pessoaBean.pessoa}" converter="#{pessoaConverter}" />
+		<o:viewAction action="#{pessoaBean.inicializar()}" />
+	</f:metadata>
+
+	<ui:define name="titulo">Novo Cadastro</ui:define>
+
+	<ui:define name="corpo">
+	
+		<h:form id="frmPessoa">
+		
+		<p:messages closable="true">
+			<p:autoUpdate  />
+		</p:messages>
+		
+			<cc:customComponent-box id="panelNovoCadastro" titulo="Novo Cadastro">
+		 	
+		 		<p:toolbar styleClass="st-toolbar">
+
+						<p:toolbarGroup>
+							<p:button value="Novo" outcome="/page/CadastroPessoa" />
+							<p:commandButton value="Salvar" id="botaoSalvar" style="margin-left: 5px;" styleClass="ui-button-success"
+								actionListener="#{pessoaBean.salvar()}" process="@form frmPessoa:panelDadosPrincipais" update="@form frmPessoa:panelDadosPrincipais" />
+						</p:toolbarGroup>
+
+						<p:toolbarGroup align="right">
+							<p:button value="Pesquisar" outcome="/page/PesquisaPessoa" styleClass="ui-button-secondary" />
+						</p:toolbarGroup>
+
+					</p:toolbar>
+		 	
+		 	</cc:customComponent-box>
+
+
+			<cc:customComponent-box id="panelDadosPrincipais" titulo="Dados Principais">
+				
+					<div class="formgrid grid"  style="margin-top: 5px">
+						
+						<div class="field col-6 md:col-6">
+							<p:outputLabel for="iptNome" value="Nome" />
+							<p:inputText id="iptNome" value="#{pessoaBean.pessoa.nome}" styleClass="form-control "
+								required="true" onkeypress="return apenasString(event)" />
+						</div>
+
+						<div class="field col-6 md:col-6">
+							<p:outputLabel for="iptCpf" value="CPF" />
+							<p:inputMask id="iptCpf" value="#{pessoaBean.pessoa.cpf}"
+								 mask="999.999.999-99"  styleClass="form-control" />
+						</div>
+
+						<div class="field col-2 md:col-2">
+							<p:outputLabel for="iptDataNascimento" value="Data Nascimento" />
+							<br />
+							<p:datePicker id="iptDataNascimento" value="#{pessoaBean.pessoa.dataNascimento}" 
+								  inputStyleClass="form-control" />
+						</div>
+						
+						<div class="field col-4 md:col-4">
+							<p:outputLabel for="iptIdade" value="Idade" />
+							<p:inputNumber  id="iptIdade" decimalPlaces="0" size="3" inputStyleClass="form-control" thousandSeparator=" " maxValue="160" value="#{pessoaBean.pessoa.idade}"/>
+						</div>
+						
+						<div class="field col-3 md:col-3">
+							<p:outputLabel for="iptSexo" value="Sexo"/>
+							<p:selectOneRadio id="iptSexo" value="#{pessoaBean.pessoa.sexo}"  >
+								<f:selectItems   value="#{pessoaBean.getSexoValues()}" var="item" 
+									itemLabel="#{item.descricao}" itemValue="#{item}" />
+							</p:selectOneRadio>
+						</div>
+						
+						<div class="field col-3 md:col-3">
+							<br/>
+							<br/>
+							<p:commandButton value="Adicionar Endereço" icon="pi pi-plus" actionListener="#{pessoaBean.abrirDialogEndereco()}" process="@this" update="panelEnderecos:frmDialogEndereco:pnlFormEndereco" />
+						</div>
+						
+					</div>
+				</cc:customComponent-box>
+		</h:form>
+
+
+		<cc:customComponent-box id="panelEnderecos" titulo="Endereços">
+			
+				<h:form id="frmEnderecos">
+					<c:if test="#{pessoaBean.pessoa.enderecos.size() > 0}">
+
+						<p:dataTable id="dtEndereco" 
+							value="#{pessoaBean.pessoa.enderecos}" var="endereco">
+
+							<p:column headerText="CEP" width="100" >
+								<p:outputLabel value="#{endereco.cep}" />
+							</p:column>
+
+							<p:column headerText="Logradouro" width="200" >
+								<p:outputLabel value="#{endereco.logradouro}" />
+							</p:column>
+
+							<p:column headerText="Bairro" width="130">
+								<p:outputLabel value="#{endereco.bairro}" />
+							</p:column>
+
+							<p:column headerText="Cidade" width="100">
+								<p:outputLabel value="#{endereco.cidade.nome}" />
+							</p:column>
+
+							<p:column headerText="Estado" width="60">
+								<p:outputLabel value="#{endereco.cidade.estado.uf}" />
+							</p:column>
+
+							<p:column headerText="Opção" width="60">
+								<p:commandButton title="Alterar endereço" icon="pi pi-pencil" update="panelEnderecos:frmDialogEndereco:pnlFormEndereco"
+									action="#{pessoaBean.editarEndereco(endereco)}"  disabled="#{endereco.id eq null}"/>
+									
+
+								<p:commandButton title="Remover endereço" icon="pi pi-trash" actionListener="#{pessoaBean.removerEndereco(endereco)}" process="@this" update="panelEnderecos:frmEnderecos" >
+
+								</p:commandButton>
+							</p:column>
+
+						</p:dataTable>
+					</c:if>
+
+				</h:form>
+			
+			<ui:include src="/page/DialogEndereco.xhtml" />
+			
+		</cc:customComponent-box>	
+	
+		<script>
+			function apenasString(event) {
+				var input = event.key;
+				return /[a-zA-ZÀ-ÖØ-öø-ÿ\s]/.test(input);
+			}
+		</script>
+
+	</ui:define>
+
+</ui:composition>
