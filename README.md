@@ -45,12 +45,13 @@ View Listagem de Enderecos
 ## Tecnologias utilizadas
 - Java 8
 - JPA / Hibernate
-- JSF 2.2
+- JSF
 - CDI
 - Maven
 - Primefaces 12
 - Log4J
 - Docker
+- Html, Css, Javascript
   
 ## Banco de Dados
 - PostgresSQL 10
@@ -66,6 +67,8 @@ Pré-requisitos: Java 8 e Tomcat 8.5
 git clone https://github.com/AnthonyMacedo/CadastroDePessoas.git
 
 # compilar projeto com mvn package em seguida adicionar arquivo war na pasta SEU_DIR_TOMCAT\webapp do tomcat e depois executar na pasta SEU_DIR_TOMCAT\bin\startup.bat
+
+acessar url: http://localhost:8080/cadastro-pessoa/page/CadastroPessoa.xhtml
 
 ## Banco de dados
 Pré-requisitos: PostgresSQL 10
