@@ -1,2 +1,2 @@
 # CadastroDePessoas
-Sistema simples de cadastro de pessoas.
+Sistema simples de cadastro e listagem de pessoas.
