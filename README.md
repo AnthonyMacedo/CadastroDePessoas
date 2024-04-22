@@ -7,6 +7,7 @@ Sistema simples de cadastro e listagem de pessoas.
 - Solução do desafio de cadastro de pessoas, foi feito algumas alterações nas tabelas, adicionando cidade e estado. 
 - Foi feito um layout simples com Primefaces para o front onde foi criado template e um composite box para reutilizar nos formulários.
 - Foi utilizado arquitetura MVC, foi separado nas seguintes camadas para separação de responsabilidades:
+  * Model
   * Repository
   * Services
   * Controller
